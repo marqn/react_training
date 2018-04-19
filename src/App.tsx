@@ -22,13 +22,13 @@ class App extends React.Component {
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
               <li className="nav-item">
-                <NavLink to="/" activeClassName="nav-link selected" className="nav-link">Home</NavLink>
+                <NavLink to="/" activeStyle={{ fontWeight: 'bold' }} exact className="nav-link">Home</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/learn" activeClassName="nav-link selected" className="nav-link">Learn</NavLink>
+                <NavLink to="/learn" activeStyle={{ fontWeight: 'bold' }} className="nav-link">Learn</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/wordmanager" activeClassName="nav-link selected" className="nav-link">Word manager</NavLink>
+                <NavLink to="/wordmanager" activeStyle={{ fontWeight: 'bold' }} className="nav-link">Word manager</NavLink>
               </li>
 
             </ul>
