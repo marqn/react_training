@@ -1,11 +1,14 @@
 import * as React from 'react';
-import { Route, Switch } from 'react-router-dom'
+import { Route, Switch, NavLink } from 'react-router-dom'
 import './App.css';
 import { HomePage } from './pages/HomePage';
 import { LearnPage } from './pages/LearnPage';
 import { WordManagerPage } from './pages/WordManagerPage';
 
 class App extends React.Component {
+
+
+
   public render() {
     return (
       <div className="App">
@@ -18,15 +21,16 @@ class App extends React.Component {
           </button>
           <div className="collapse navbar-collapse" id="navbarNav">
             <ul className="navbar-nav">
-              <li className="nav-item active">
-                <a className="nav-link" href="#/">Home</a>
+              <li className="nav-item">
+                <NavLink to="/" activeClassName="nav-link selected" className="nav-link">Home</NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#/learn">Learn</a>
+                <NavLink to="/learn" activeClassName="nav-link selected" className="nav-link">Learn</NavLink>
               </li>
               <li className="nav-item">
-                <a className="nav-link" href="#/wordmanager">Word manager</a>
+                <NavLink to="/wordmanager" activeClassName="nav-link selected" className="nav-link">Word manager</NavLink>
               </li>
+
             </ul>
           </div>
         </nav>
@@ -34,10 +38,11 @@ class App extends React.Component {
           <div className="row">
             <div className="col">
               <Switch>
-                <Route path="/" component={HomePage} exact={true}/>
+                <Route path="/" component={HomePage} exact={true} />
                 <Route path="/learn" component={LearnPage} />
                 <Route path="/wordmanager" component={WordManagerPage} />
               </Switch>
+
             </div>
 
           </div>
@@ -46,5 +51,7 @@ class App extends React.Component {
     );
   }
 }
+
+window['app'] = App;
 
 export default App;
