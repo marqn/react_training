@@ -14,13 +14,8 @@ class App extends React.Component {
       <div className="App">
 
         <nav className="navbar navbar-expand-lg navbar-light bg-light">
-
-          <a className="navbar-brand" href="#">SaveMinder</a>
-          <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span className="navbar-toggler-icon" />
-          </button>
-          <div className="collapse navbar-collapse" id="navbarNav">
-            <ul className="navbar-nav">
+          <div className="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
+            <ul className="navbar-nav mr-auto">
               <li className="nav-item">
                 <NavLink to="/" activeStyle={{ fontWeight: 'bold' }} exact className="nav-link">Home</NavLink>
               </li>
@@ -30,10 +25,26 @@ class App extends React.Component {
               <li className="nav-item">
                 <NavLink to="/wordmanager" activeStyle={{ fontWeight: 'bold' }} className="nav-link">Word manager</NavLink>
               </li>
-
+            </ul>
+          </div>
+          <div className="mx-auto order-0">
+            <a className="navbar-brand" href="#">SaveMinder</a>
+            <button className="navbar-toggler" type="button" data-toggle="collapse" data-target=".dual-collapse2">
+              <span className="navbar-toggler-icon"></span>
+            </button>
+          </div>
+          <div className="navbar-collapse collapse w-100 order-3 dual-collapse2">
+            <ul className="navbar-nav ml-auto">
+              <li className="nav-item">
+                <NavLink to="/signin" activeStyle={{ fontWeight: 'bold' }} className="nav-link">Sign in</NavLink>
+              </li>
+              <li className="nav-item">
+                <NavLink to="/signup" activeStyle={{ fontWeight: 'bold' }} className="nav-link">Sign up</NavLink>
+              </li>
             </ul>
           </div>
         </nav>
+
         <div className="container">
           <div className="row">
             <div className="col">
