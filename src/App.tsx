@@ -4,11 +4,9 @@ import './App.css';
 import { HomePage } from './pages/HomePage';
 import { LearnPage } from './pages/LearnPage';
 import { WordManagerPage } from './pages/WordManagerPage';
-<<<<<<< HEAD
 import { SignIn } from './pages/login/SignIn';
-=======
 import { WordItem } from './WordItem';
->>>>>>> b42baa2ff888ff113601618f4dc6c7fd0cdbfb8d
+
 
 interface State {
   words: WordItem[]
