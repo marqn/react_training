@@ -4,6 +4,7 @@ import './App.css';
 import { HomePage } from './pages/HomePage';
 import { LearnPage } from './pages/LearnPage';
 import { WordManagerPage } from './pages/WordManagerPage';
+import { SignIn } from './pages/login/SignIn';
 
 class App extends React.Component {
 
@@ -52,6 +53,7 @@ class App extends React.Component {
                 <Route path="/" component={HomePage} exact={true} />
                 <Route path="/learn" component={LearnPage} />
                 <Route path="/wordmanager" component={WordManagerPage} />
+                <Route path="/signin" component={SignIn} />
               </Switch>
 
             </div>
