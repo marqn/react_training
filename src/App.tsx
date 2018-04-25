@@ -4,11 +4,21 @@ import './App.css';
 import { HomePage } from './pages/HomePage';
 import { LearnPage } from './pages/LearnPage';
 import { WordManagerPage } from './pages/WordManagerPage';
+<<<<<<< HEAD
 import { SignIn } from './pages/login/SignIn';
+=======
+import { WordItem } from './WordItem';
+>>>>>>> b42baa2ff888ff113601618f4dc6c7fd0cdbfb8d
 
-class App extends React.Component {
+interface State {
+  words: WordItem[]
+}
 
+class App extends React.Component<{}, State> {
 
+  state: State = {
+    words: []
+  }
 
   public render() {
     return (
