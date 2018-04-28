@@ -5,11 +5,11 @@ import { HomePage } from './pages/HomePage';
 import { LearnPage } from './pages/LearnPage';
 import { WordManagerPage } from './pages/WordManagerPage';
 import { SignIn } from './pages/login/SignIn';
-import { WordItem } from './WordItem';
+import { WordItemVO } from './vo/WordItemVO';
 
 
 interface State {
-  words: WordItem[]
+  words: WordItemVO[]
 }
 
 class App extends React.Component<{}, State> {

@@ -1,8 +1,10 @@
 import * as React from "react";
-import { WordItem } from "../WordItem"
+import { WordItemVO } from "../vo/WordItemVO";
+import { WordList } from "./WordList";
+import axios from 'axios';
 
 interface State {
-    words: WordItem[]
+    words: WordItemVO[]
 }
 
 interface Props {
@@ -11,14 +13,27 @@ interface Props {
 
 export class WordManagerPage extends React.Component<Props, State> {
 
-    static defaultProps = {
-        txt: 'WordManagerPage'
+    state: State = {
+        words: []
+    }
+
+    fetchWords = () => {
+        axios.get<WordItemVO[]>("http://localhost:9000/words")
+            .then(response => {
+                this.setState({
+                    words: response.data
+                })
+            })
+    }
+
+    componentDidMount() {
+        this.fetchWords();
     }
 
     render() {
 
         return <div>
-            <p>{this.props.txt}</p>
+            <WordList words={this.state.words} />
         </div>
     }
 }
