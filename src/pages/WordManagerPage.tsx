@@ -5,11 +5,12 @@ import axios from 'axios';
 
 interface State {
     words: WordItemVO[]
+    word?: WordItemVO
+}
+interface Props {
+    txt: string
 }
 
-interface Props {
-    txt?: string
-}
 
 export class WordManagerPage extends React.Component<Props, State> {
 
@@ -26,6 +27,12 @@ export class WordManagerPage extends React.Component<Props, State> {
             })
     }
 
+    reload = () => {
+        // this.saveWord(this.state.word)
+        console.log(Math.random())
+        this.fetchWords();
+    }
+
     componentDidMount() {
         this.fetchWords();
     }
@@ -33,7 +40,7 @@ export class WordManagerPage extends React.Component<Props, State> {
     render() {
 
         return <div>
-            <WordList words={this.state.words} />
+            <WordList words={this.state.words} reloadWords={this.reload} />
         </div>
     }
 }

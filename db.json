@@ -1,46 +1,46 @@
 {
   "words": [
     {
-      "id": 1,
+      "id": "1524336262808",
       "txt1": "origin",
       "txt2": "pochodzenie, początek",
       "category": "1",
       "addedDate": "1524336262808"
     },
     {
-      "id": 2,
+      "id": "1524336262801",
       "txt1": "on demand",
       "txt2": "na żądanie",
       "category": "1",
       "addedDate": "1524336262818"
     },
     {
-      "id": 3,
-      "txt1": "STALLED",
-      "txt2": "blokować, ugrzęznąć, grać na zwłokę",
+      "id": "1524336262802",
+      "txt1": "text 1",
+      "txt2": "text 2",
       "category": "1",
-      "addedDate": "1524336263808"
+      "addedDate": "1524946132247"
     },
     {
-      "id": 4,
+      "id": "1524336262803",
       "txt1": "evaluate",
       "txt2": "ocenić, oszacować",
       "category": "1",
       "addedDate": "1524336264808"
     },
     {
-      "id": 5,
+      "id": "1524336262804",
       "txt1": "Not a burden.",
       "txt2": "to nie ciężar",
       "category": "1",
       "addedDate": "1524336264908"
     },
     {
-      "id": 6,
-      "txt1": "appropriate",
-      "txt2": "właściwy",
-      "category": "1",
-      "addedDate": "1524336265308"
+      "id": "1524336262805",
+      "txt1": "text 1",
+      "txt2": "text 2",
+      "category": 1,
+      "addedDate": "1524946567002"
     }
   ],
   "posts": [
