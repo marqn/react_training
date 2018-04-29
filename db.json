@@ -1,46 +1,39 @@
 {
   "words": [
     {
-      "id": "1524336262808",
-      "txt1": "origin",
-      "txt2": "pochodzenie, początek",
-      "category": "1",
-      "addedDate": "1524336262808"
-    },
-    {
-      "id": "1524336262801",
+      "id": 1,
       "txt1": "on demand",
       "txt2": "na żądanie",
       "category": "1",
       "addedDate": "1524336262818"
     },
     {
-      "id": "1524336262802",
-      "txt1": "text 1",
-      "txt2": "text 2",
-      "category": "1",
-      "addedDate": "1524946132247"
+      "id": 2,
+      "txt1": "fdsfdsddfds",
+      "txt2": "fsdfsdfffds",
+      "category": 1,
+      "addedDate": 1524988843717
     },
     {
-      "id": "1524336262803",
+      "id": 3,
       "txt1": "evaluate",
       "txt2": "ocenić, oszacować",
       "category": "1",
       "addedDate": "1524336264808"
     },
     {
-      "id": "1524336262804",
+      "id": 4,
       "txt1": "Not a burden.",
       "txt2": "to nie ciężar",
       "category": "1",
       "addedDate": "1524336264908"
     },
     {
-      "id": "1524336262805",
-      "txt1": "text 1",
-      "txt2": "text 2",
+      "id": 5,
+      "txt1": "gf",
+      "txt2": "gfgff",
       "category": 1,
-      "addedDate": "1524946567002"
+      "addedDate": 1524988881132
     }
   ],
   "posts": [
