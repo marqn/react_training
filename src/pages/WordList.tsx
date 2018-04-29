@@ -20,7 +20,7 @@ export class WordList extends React.Component<Props, State> {
             txt2: "",
             addedDate: Date.now(),
             category: 1,
-            id:Date.now()
+            id: Date.now()
         },
         disabledBtn: true
     }
@@ -38,8 +38,7 @@ export class WordList extends React.Component<Props, State> {
                 this.props.reloadWords && this.props.reloadWords()
                 word.txt1 = ''
                 word.txt2 = ''
-                this.setState({word});
-                console.log(word)
+                this.setState({ word, disabledBtn:true });
             })
     }
 
@@ -60,6 +59,9 @@ export class WordList extends React.Component<Props, State> {
                 [fieldName]: fieldValue
             }
         }))
+
+        if(this.state.word.txt1.length > 0 && this.state.word.txt2.length > 0)
+            this.setState({disabledBtn: false})
     }
 
     render() {
@@ -83,7 +85,7 @@ export class WordList extends React.Component<Props, State> {
                                 placeholder="Insert second word"
                                 onChange={this.handleChange} />
                             <div className="input-group-append">
-                                <button disabled={false}
+                                <button disabled={this.state.disabledBtn}
                                     className="btn btn-success"
                                     type="button" onClick={this.onSave}>
                                     Zapisz
@@ -96,6 +98,7 @@ export class WordList extends React.Component<Props, State> {
                         <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
                             <small>{word.txt1}</small>
                             <small>{word.txt2}</small>
+                            <small>{index}</small>
                             <span className="badge badge-primary badge-pill">{word.addedDate}</span>
                         </li>
                     )}
