@@ -3,8 +3,7 @@ import { WordItemVO } from "../vo/WordItemVO";
 import axios from "axios";
 
 interface State {
-    txt1: string,
-    txt2: string,
+    word: WordItemVO,
     disabledBtn: boolean
 }
 
@@ -16,8 +15,13 @@ interface Props {
 export class WordList extends React.Component<Props, State> {
 
     state: State = {
-        txt1: '',
-        txt2: '',
+        word: {
+            txt1: "",
+            txt2: "",
+            addedDate: Date.now(),
+            category: 1,
+            id:Date.now()
+        },
         disabledBtn: true
     }
 
@@ -28,42 +32,34 @@ export class WordList extends React.Component<Props, State> {
     }
 
     saveWord = (word: WordItemVO) => {
-        axios.post<WordItemVO>("http://localhost:9000/words/" + word.id, word)
+        word.id = Date.now()
+        axios.post<WordItemVO>("http://localhost:9000/words/", word)
             .then(response => {
                 this.props.reloadWords && this.props.reloadWords()
-                this.setState({
-                    txt1:"",
-                    txt2:"",
-                    disabledBtn:true
-                })
+                word.txt1 = ''
+                word.txt2 = ''
+                this.setState({word});
+                console.log(word)
             })
     }
 
     onSave = () => {
-        let word: WordItemVO = {
-            id: 6,
-            txt1: this.state.txt1,
-            txt2: this.state.txt2,
-            category: 1,
-            addedDate: Date.now()
-        }
-        this.saveWord(word);
+        this.saveWord(this.state.word);
+
+        console.log(this.state.word);
     }
 
     handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-        const elem = event.target
-        const fieldName = elem.name
-        const fieldValue = elem.value
+        const elem = event.target,
+            fieldName = elem.name,
+            fieldValue = elem.value;
 
-        this.setState({
-            [fieldName]: fieldValue
-        } as any)
-
-        if (this.state.txt2.length > 0 && this.state.txt2.length > 0) {
-            this.setState({ disabledBtn: false })
-        }
-
-        console.log('disabledBtn: ' + this.state.disabledBtn)
+        this.setState(prevState => ({
+            word: {
+                ...prevState.word,
+                [fieldName]: fieldValue
+            }
+        }))
     }
 
     render() {
@@ -73,7 +69,7 @@ export class WordList extends React.Component<Props, State> {
                     <li className="list-group-item list-group-item-info d-flex justify-content-between align-items-center">
                         <div className="input-group mb-3">
                             <input type="text"
-
+                                value={this.state.word.txt1}
                                 name="txt1"
                                 className="form-control"
                                 placeholder="Insert first word"
@@ -81,12 +77,13 @@ export class WordList extends React.Component<Props, State> {
                         </div>
                         <div className="input-group mb-3">
                             <input type="text"
+                                value={this.state.word.txt2}
                                 name="txt2"
                                 className="form-control"
                                 placeholder="Insert second word"
                                 onChange={this.handleChange} />
                             <div className="input-group-append">
-                                <button disabled={this.state.disabledBtn}
+                                <button disabled={false}
                                     className="btn btn-success"
                                     type="button" onClick={this.onSave}>
                                     Zapisz
