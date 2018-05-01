@@ -64,6 +64,10 @@ export class WordList extends React.Component<Props, State> {
             this.setState({disabledBtn: false})
     }
 
+    onSelect = (event:any) => {
+        console.log(event)
+    }
+
     render() {
         return (
             <div>
@@ -95,10 +99,9 @@ export class WordList extends React.Component<Props, State> {
                     </li>
 
                     {this.props.words.map((word, index) =>
-                        <li key={index} className="list-group-item d-flex justify-content-between align-items-center">
+                        <li onClick={this.onSelect} key={index} className="list-group-item d-flex justify-content-between align-items-center">
                             <small>{word.txt1}</small>
                             <small>{word.txt2}</small>
-                            <small>{index}</small>
                             <span className="badge badge-primary badge-pill">{word.addedDate}</span>
                         </li>
                     )}
