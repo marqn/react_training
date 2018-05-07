@@ -6,6 +6,7 @@ import { LearnPage } from './pages/LearnPage';
 import { WordManagerPage } from './pages/login/wordManagerPages/WordManagerPage';
 import { SignIn } from './pages/login/SignIn';
 import { WordItemVO } from './vo/WordItemVO';
+import { SignUp } from './pages/login/SignUp';
 
 
 interface State {
@@ -62,6 +63,7 @@ class App extends React.Component<{}, State> {
                 <Route path="/learn" component={LearnPage} />
                 <Route path="/wordmanager" component={WordManagerPage} />
                 <Route path="/signin" component={SignIn} />
+                <Route path="/signup" component={SignUp} />
               </Switch>
 
             </div>
