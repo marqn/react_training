@@ -129,7 +129,7 @@ export class WordList extends React.Component<Props, State> {
                                 <div className="input-group-append">
                                     <button className="btn btn-warning"
                                             type="button" onClick={this.onUpdate}>
-                                        Edytuj
+                                        Aktualizuj
                                     </button>
                                 </div>
 
