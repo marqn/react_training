@@ -65,7 +65,8 @@ export class WordList extends React.Component<Props, State> {
     }
 
     onSelect = (event:any) => {
-        console.log(event)
+        console.log(event.target);
+        this.setState({word:{txt1:'sa', txt2:"asdsa",addedDate:1, category:1, id:1 }});
     }
 
     render() {
