@@ -5,7 +5,8 @@ import {WordItemList} from "./WordItemList";
 
 interface State {
     word: WordItemVO,
-    disabledBtn: boolean
+    disabledBtn: boolean,
+    editMode: boolean
 }
 
 interface Props {
@@ -23,21 +24,54 @@ export class WordList extends React.Component<Props, State> {
             category: 1,
             id: Date.now()
         },
-        disabledBtn: true
-    }
+        disabledBtn: true,
+        editMode: false
+    };
+
     saveWord = (word: WordItemVO) => {
-        word.id = Date.now()
+        word.id = Date.now();
         axios.post<WordItemVO>("http://localhost:9000/words/", word)
             .then(response => {
-                this.props.reloadWords && this.props.reloadWords()
-                word.txt1 = ''
-                word.txt2 = ''
+                this.props.reloadWords && this.props.reloadWords();
+                word.txt1 = '';
+                word.txt2 = '';
                 this.setState({word, disabledBtn: true});
             })
-    }
+    };
+
     onSave = () => {
         this.saveWord(this.state.word);
-    }
+    };
+
+    onDelete = () => {
+        axios.delete("http://localhost:9000/words/" + this.state.word.id)
+            .then(response => {
+                this.props.reloadWords && this.props.reloadWords();
+                let word: WordItemVO = {
+                    txt1: '',
+                    txt2: '',
+                    id: 0,
+                    addedDate: 0,
+                    category: 0
+                };
+                this.setState({word: word, editMode: false, disabledBtn: true});
+            })
+    };
+    onUpdate = () => {
+        axios.put("http://localhost:9000/words/" + this.state.word.id, this.state.word)
+            .then(response => {
+                this.props.reloadWords && this.props.reloadWords();
+                let word: WordItemVO = {
+                    txt1: '',
+                    txt2: '',
+                    id: 0,
+                    addedDate: 0,
+                    category: 0
+                };
+                this.setState({word: word, editMode: false, disabledBtn: true});
+            })
+    };
+
     handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         const elem = event.target,
             fieldName = elem.name,
@@ -48,18 +82,18 @@ export class WordList extends React.Component<Props, State> {
                 ...prevState.word,
                 [fieldName]: fieldValue
             }
-        }))
+        }));
 
         if (this.state.word.txt1.length > 0 && this.state.word.txt2.length > 0)
             this.setState({disabledBtn: false})
-    }
+    };
+
     selectWordItem = (word: WordItemVO) => {
-        this.setState({word:word});
-    }
+        this.setState({word: word, editMode: true});
+    };
 
     constructor(props: Props) {
         super(props);
-
         this.handleChange = this.handleChange.bind(this);
     }
 
@@ -83,11 +117,28 @@ export class WordList extends React.Component<Props, State> {
                                    className="form-control"
                                    placeholder="Insert second word"
                                    onChange={this.handleChange}/>
+                            {!this.state.editMode ?
+                                <div className="input-group-append">
+                                    <button disabled={this.state.disabledBtn}
+                                            className="btn btn-success"
+                                            type="button" onClick={this.onSave}>
+                                        Zapisz
+                                    </button>
+                                </div> :
+
+                                <div className="input-group-append">
+                                    <button className="btn btn-warning"
+                                            type="button" onClick={this.onUpdate}>
+                                        Edytuj
+                                    </button>
+                                </div>
+
+                            }
                             <div className="input-group-append">
-                                <button disabled={this.state.disabledBtn}
-                                        className="btn btn-success"
-                                        type="button" onClick={this.onSave}>
-                                    Zapisz
+                                <button disabled={!this.state.editMode}
+                                        className="btn btn-danger"
+                                        type="button" onClick={this.onDelete}>
+                                    Usuń
                                 </button>
                             </div>
                         </div>

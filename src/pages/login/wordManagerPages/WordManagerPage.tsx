@@ -29,7 +29,6 @@ export class WordManagerPage extends React.Component<Props, State> {
     }
 
     reload = () => {
-        console.log(Math.random());
         this.fetchWords();
     }
 
