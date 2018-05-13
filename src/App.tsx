@@ -3,7 +3,7 @@ import { Route, Switch, NavLink } from 'react-router-dom'
 import './App.css';
 import { HomePage } from './pages/HomePage';
 import { LearnPage } from './pages/LearnPage';
-import { WordManagerPage } from './pages/WordManagerPage';
+import { WordManagerPage } from './pages/login/wordManagerPages/WordManagerPage';
 import { SignIn } from './pages/login/SignIn';
 import { WordItemVO } from './vo/WordItemVO';
 
