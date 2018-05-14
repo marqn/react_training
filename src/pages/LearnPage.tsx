@@ -6,45 +6,53 @@ import { ButtonComponent } from "./learn/ButtonComponent";
 
 interface State {
     txt1_hidden: boolean,
-    word: WordItemVO
+    word: WordItemVO,
+    words:WordItemVO[]
 }
 
 export class LearnPage extends React.Component<{}, State> {
 
     constructor(p:any) {
-        super(p)
+        super(p);
     }
 
     index = 1;
 
     componentDidMount() {
-        this.getWord(this.index);
+        this.getWords();
     }
 
-    getWord = (index: number) => {
-        axios.get<WordItemVO>("http://localhost:9000/words/" + index)
+    getWords = () => {
+        axios.get("http://localhost:9000/words/")
             .then(response => {
-                this.setState({word: response.data});
-                console.log(response.data);
-            })
-    }
+                this.setState({words: response.data, word: response.data[0]});
+                console.log(this.state.word);
+            });
+    };
+
+    nextWord = () => {
+        let nextWord = this.state.words[this.index];
+        this.index++;
+        if(this.index >= this.state.words.length) {
+            console.log("koniec");
+            this.index = this.state.words.length-1;
+        }
+        this.setState({word: nextWord});
+    };
 
     wiem = () => {
-        this.setState({txt1_hidden:false})
-        this.getWord(++this.index)
-        console.log("wiem")
-    }
+        this.setState({txt1_hidden: false});
+        this.nextWord();
+    };
 
     niewiem = () => {
-        this.setState({txt1_hidden:false})
-        this.getWord(++this.index)
-        console.log("niewiem")
-    }
+        this.setState({txt1_hidden: false});
+        this.nextWord();
+    };
 
     sprawdz = () => {
-        console.log("sprawdz")
-        this.setState({txt1_hidden:true})
-    }
+        this.setState({txt1_hidden: true});
+    };
 
     render() {
 
