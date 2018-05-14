@@ -53,7 +53,7 @@ export class ButtonComponent extends React.Component<Props, State> {
                     
             }
 
-        </div>
+        </div>;
 
     }
 }
