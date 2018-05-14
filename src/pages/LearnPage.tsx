@@ -24,7 +24,7 @@ export class LearnPage extends React.Component<{}, State> {
     getWord = (index: number) => {
         axios.get<WordItemVO>("http://localhost:9000/words/" + index)
             .then(response => {
-                this.setState({ word: response.data })
+                this.setState({word: response.data});
                 console.log(response.data);
             })
     }
