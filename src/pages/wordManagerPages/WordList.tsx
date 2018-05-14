@@ -1,5 +1,5 @@
 import * as React from "react";
-import {WordItemVO} from "../../../vo/WordItemVO";
+import {WordItemVO} from "../../vo/WordItemVO";
 import axios from "axios";
 import {WordItemList} from "./WordItemList";
 
