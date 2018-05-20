@@ -20,7 +20,6 @@ export class SelectGamePage extends React.Component {
                     </select>
                 </div>
                 <a className="btn btn-primary" href="/#/learn">Start</a>
-
             </form>
         </div>
     }

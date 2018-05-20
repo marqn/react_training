@@ -6,12 +6,22 @@ import {ButtonComponent} from "./ButtonComponent";
 
 interface State {
     txt1_hidden: boolean,
+    isFinish: boolean,
     word: WordItemVO,
     words: WordItemVO[],
     typeOfGame: {}
 }
 
 export class LearnPage extends React.Component<{}, State> {
+
+    state: State = {
+        isFinish: false,
+        txt1_hidden: false,
+        typeOfGame: {},
+        word: {} as WordItemVO,
+        words: []
+    };
+
 
     constructor(p: any) {
         super(p);
@@ -27,18 +37,16 @@ export class LearnPage extends React.Component<{}, State> {
         axios.get("http://localhost:9000/words/")
             .then(response => {
                 this.setState({words: response.data, word: response.data[0]});
-                console.log(this.state.word);
             });
     };
 
     nextWord = () => {
         let nextWord = this.state.words[this.index];
         this.index++;
-        if (this.index >= this.state.words.length) {
-            console.log("koniec");
-            this.index = this.state.words.length - 1;
-        }
-        this.setState({word: nextWord});
+        if (this.index > this.state.words.length) {
+            this.setState({isFinish: true});
+        } else
+            this.setState({word: nextWord});
     };
 
     wiem = () => {
@@ -58,10 +66,14 @@ export class LearnPage extends React.Component<{}, State> {
     render() {
 
         return <div>
+
+            {this.state.isFinish ? 'finish' : 'no finish'}
+
             {this.state ? this.state.txt1_hidden ? <h2>{this.state.word.txt1}</h2> : <h2>****</h2> : ' '}
 
             <h2>{this.state ? this.state.word.txt2 : ' '}</h2>
-            <ButtonComponent wiem={this.wiem} niewiem={this.niewiem} sprawdz={this.sprawdz}/>
+            <ButtonComponent finish={this.state.isFinish} wiem={this.wiem} niewiem={this.niewiem}
+                             sprawdz={this.sprawdz}/>
         </div>
     }
 }
