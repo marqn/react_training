@@ -22,7 +22,8 @@ export class WordList extends React.Component<Props, State> {
             txt2: "",
             addedDate: Date.now(),
             category: 1,
-            id: Date.now()
+            id: Date.now(),
+            selected: false
         },
         disabledBtn: true,
         editMode: false
@@ -31,6 +32,7 @@ export class WordList extends React.Component<Props, State> {
     saveWord = (word: WordItemVO) => {
         word.id = Date.now();
         word.addedDate = Date.now();
+        word.selected = false;
         axios.post<WordItemVO>("http://localhost:9000/words/", word)
             .then(response => {
                 this.props.reloadWords && this.props.reloadWords();
@@ -53,13 +55,16 @@ export class WordList extends React.Component<Props, State> {
                     txt2: '',
                     id: 0,
                     addedDate: 0,
-                    category: 0
+                    category: 0,
+                    selected: false
                 };
                 this.setState({word: word, editMode: false, disabledBtn: true});
             })
     };
     onUpdate = () => {
         this.state.word.addedDate = Date.now();
+        this.state.word.selected = false;
+
         axios.put("http://localhost:9000/words/" + this.state.word.id, this.state.word)
             .then(response => {
                 this.props.reloadWords && this.props.reloadWords();
@@ -68,7 +73,8 @@ export class WordList extends React.Component<Props, State> {
                     txt2: '',
                     id: 0,
                     addedDate: 0,
-                    category: 0
+                    category: 0,
+                    selected: false
                 };
                 this.setState({word: word, editMode: false, disabledBtn: true});
             })
@@ -90,8 +96,17 @@ export class WordList extends React.Component<Props, State> {
             this.setState({disabledBtn: false})
     };
 
-    selectWordItem = (word: WordItemVO) => {
-        this.setState({word: word, editMode: true});
+    unselectWordItems = () => {
+        this.props.words.map(word => {
+            word.selected = false;
+        });
+    }
+
+    selectWordItem = (_word: WordItemVO) => {
+        this.unselectWordItems();
+        _word.selected = true;
+        this.setState({word: _word, editMode: true});
+        ;
     };
 
     constructor(props: Props) {

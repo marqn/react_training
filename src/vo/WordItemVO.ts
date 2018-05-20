@@ -4,4 +4,5 @@ export interface WordItemVO {
     txt2: string
     category: number
     addedDate: number
+    selected: boolean
 }
