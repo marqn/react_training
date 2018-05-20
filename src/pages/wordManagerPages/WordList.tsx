@@ -30,6 +30,7 @@ export class WordList extends React.Component<Props, State> {
 
     saveWord = (word: WordItemVO) => {
         word.id = Date.now();
+        word.addedDate = Date.now();
         axios.post<WordItemVO>("http://localhost:9000/words/", word)
             .then(response => {
                 this.props.reloadWords && this.props.reloadWords();
