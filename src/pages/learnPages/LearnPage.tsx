@@ -67,20 +67,20 @@ export class LearnPage extends React.Component<{}, State> {
 
         return <div>
 
-            {this.state.isFinish ? <div>
-                    <h2>Koniec</h2>
-                <h4>Podsumowanie</h4>
-                <form>
-
-                </form>
-                </div>
+            {this.state.isFinish ? <div className="jumbotron">
+                <h1 className="display-4">Koniec</h1>
+                <p className="lead">Podsumowanie:</p>
+                <hr className="my-4" />
+                    <p>It uses utility classes for typography and spacing to space content out within the larger
+                        container.</p>
+            </div>
                 :
                 <div>
-                    {this.state ? this.state.txt1_hidden ? <h2>{this.state.word.txt1}</h2> : <h2>****</h2> : ' '}
+                {this.state ? this.state.txt1_hidden ? <h2>{this.state.word.txt1}</h2> : <h2>****</h2> : ' '}
 
-                    <h2>{this.state ? this.state.word.txt2 : ' '}</h2>
+                <h2>{this.state ? this.state.word.txt2 : ' '}</h2>
                 </div>
-            }
+                }
             <ButtonComponent finish={this.state.isFinish} wiem={this.wiem} niewiem={this.niewiem}
                              sprawdz={this.sprawdz}/>
         </div>
