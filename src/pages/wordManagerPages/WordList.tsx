@@ -58,6 +58,7 @@ export class WordList extends React.Component<Props, State> {
             })
     };
     onUpdate = () => {
+        this.state.word.addedDate = Date.now();
         axios.put("http://localhost:9000/words/" + this.state.word.id, this.state.word)
             .then(response => {
                 this.props.reloadWords && this.props.reloadWords();
