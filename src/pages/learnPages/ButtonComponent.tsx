@@ -54,7 +54,7 @@ export class ButtonComponent extends React.Component<Props, State> {
                         :
                         <button onClick={this.onSprawdz} className="btn btn-primary">Sprawdź</button>
                     :
-                    <a href="/#/selectGame" className="btn btn-primary">Koniec</a>
+                    <a href="/#/selectGame" className="btn btn-primary">Powrót</a>
             }
 
         </div>
