@@ -1,4 +1,6 @@
 import 'bootstrap/dist/css/bootstrap.min.css'
+// import 'bootstrap/js/dist/dropdown'
+import 'bootstrap/dist/js/bootstrap.bundle.min'
 import * as React from 'react';
 import * as ReactDOM from 'react-dom';
 import App from './App';

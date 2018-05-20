@@ -1,18 +1,19 @@
 import * as React from "react";
-import { WordItemVO } from "../vo/WordItemVO";
+import {WordItemVO} from "../../vo/WordItemVO";
 import axios from "axios";
-import { ButtonComponent } from "./learn/ButtonComponent";
+import {ButtonComponent} from "./ButtonComponent";
 
 
 interface State {
     txt1_hidden: boolean,
     word: WordItemVO,
-    words:WordItemVO[]
+    words: WordItemVO[],
+    typeOfGame: {}
 }
 
 export class LearnPage extends React.Component<{}, State> {
 
-    constructor(p:any) {
+    constructor(p: any) {
         super(p);
     }
 
@@ -33,9 +34,9 @@ export class LearnPage extends React.Component<{}, State> {
     nextWord = () => {
         let nextWord = this.state.words[this.index];
         this.index++;
-        if(this.index >= this.state.words.length) {
+        if (this.index >= this.state.words.length) {
             console.log("koniec");
-            this.index = this.state.words.length-1;
+            this.index = this.state.words.length - 1;
         }
         this.setState({word: nextWord});
     };
@@ -57,10 +58,10 @@ export class LearnPage extends React.Component<{}, State> {
     render() {
 
         return <div>
-            {this.state ? this.state.txt1_hidden ? <h2>{this.state.word.txt1}</h2>: <h2>****</h2>:' '}
+            {this.state ? this.state.txt1_hidden ? <h2>{this.state.word.txt1}</h2> : <h2>****</h2> : ' '}
 
             <h2>{this.state ? this.state.word.txt2 : ' '}</h2>
-            <ButtonComponent wiem={this.wiem} niewiem={this.niewiem} sprawdz={this.sprawdz} />
+            <ButtonComponent wiem={this.wiem} niewiem={this.niewiem} sprawdz={this.sprawdz}/>
         </div>
     }
 }

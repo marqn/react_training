@@ -2,11 +2,12 @@ import * as React from 'react';
 import { Route, Switch, NavLink } from 'react-router-dom'
 import './App.css';
 import { HomePage } from './pages/HomePage';
-import { LearnPage } from './pages/LearnPage';
+import { LearnPage } from './pages/learnPages/LearnPage';
 import { WordManagerPage } from './pages/wordManagerPages/WordManagerPage';
 import { SignIn } from './pages/login/SignIn';
 import { WordItemVO } from './vo/WordItemVO';
 import { SignUp } from './pages/login/SignUp';
+import {SelectGamePage} from "./pages/learnPages/SelectGamePage";
 
 
 interface State {
@@ -30,7 +31,7 @@ class App extends React.Component<{}, State> {
                 <NavLink to="/" activeStyle={{ fontWeight: 'bold' }} exact className="nav-link">Home</NavLink>
               </li>
               <li className="nav-item">
-                <NavLink to="/learn" activeStyle={{ fontWeight: 'bold' }} className="nav-link">Learn</NavLink>
+                <NavLink to="/selectGame" activeStyle={{ fontWeight: 'bold' }} className="nav-link">Learn</NavLink>
               </li>
               <li className="nav-item">
                 <NavLink to="/wordmanager" activeStyle={{ fontWeight: 'bold' }} className="nav-link">Word manager</NavLink>
@@ -60,6 +61,7 @@ class App extends React.Component<{}, State> {
             <div className="col">
               <Switch>
                 <Route path="/" component={HomePage} exact={true} />
+                <Route path="/selectGame" component={SelectGamePage} />
                 <Route path="/learn" component={LearnPage} />
                 <Route path="/wordmanager" component={WordManagerPage} />
                 <Route path="/signin" component={SignIn} />
