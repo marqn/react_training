@@ -118,47 +118,44 @@ export class WordList extends React.Component<Props, State> {
         return (
             <div>
                 <ul className="list-group">
+                    <li className="list-group-item list-group-item-info d-flex  align-items-center">
+                        <div className="form-group">
+                            <select className="form-control" placeholder="select category">
+                                <option value="" disabled selected hidden>Select category</option>
+                                <option>TrudneTrudneTrudneTrudneTrudneTrudne</option>
+                                <option>Łatwe</option>
+                                <option>Stare</option>
+                            </select>
+                        </div>
+                    </li>
                     <li className="list-group-item list-group-item-info d-flex justify-content-between align-items-center">
-                        <div className="input-group mb-3">
-                            <input type="text"
-                                   value={this.state.word.txt1}
-                                   name="txt1"
-                                   className="form-control"
-                                   placeholder="Insert first word"
-                                   onChange={this.handleChange}/>
-                        </div>
-                        <div className="input-group mb-3">
-                            <input type="text"
-                                   value={this.state.word.txt2}
-                                   name="txt2"
-                                   className="form-control"
-                                   placeholder="Insert second word"
-                                   onChange={this.handleChange}/>
-                            {!this.state.editMode ?
-                                <div className="input-group-append">
-                                    <button disabled={this.state.disabledBtn}
-                                            className="btn btn-success"
-                                            type="button" onClick={this.onSave}>
-                                        Zapisz
-                                    </button>
-                                </div> :
+                        <input type="text"
+                               value={this.state.word.txt1}
+                               name="txt1"
+                               className="mb-2 input-group form-control"
+                               placeholder="Insert first word"
+                               onChange={this.handleChange}/>
+                        <input type="text"
+                               value={this.state.word.txt2}
+                               name="txt2"
+                               className="mb-2 input-group form-control"
+                               placeholder="Insert second word"
+                               onChange={this.handleChange}/>
+                        {!this.state.editMode ?
+                            <button disabled={this.state.disabledBtn}
+                                    className="mb-2 input-group-append btn btn-success"
+                                    type="button" onClick={this.onSave}> Zapisz
+                            </button>
+                            :
 
-                                <div className="input-group-append">
-                                    <button className="btn btn-warning"
-                                            type="button" onClick={this.onUpdate}>
-                                        Aktualizuj
-                                    </button>
-                                </div>
-
-                            }
-                            <div className="input-group-append">
-                                <button disabled={!this.state.editMode}
-                                        className="btn btn-danger"
-                                        type="button" onClick={this.onDelete}>
-                                    Usuń
-                                </button>
-                            </div>
-                        </div>
+                            <button className="mb-2 input-group-append btn btn-warning"
+                                    type="button" onClick={this.onUpdate}> Aktualizuj
+                            </button>
+                        }
+                        <button disabled={!this.state.editMode}
+                                className="mb-2 input-group-append btn btn-danger"
+                                type="button" onClick={this.onDelete}>Usuń
+                        </button>
                     </li>
 
                     {this.props.words.map((word, index) =>

@@ -39,7 +39,7 @@ export class WordManagerPage extends React.Component<Props, State> {
     render() {
 
         return <div>
-            <div className="row">
+            {/*<div className="row">
                 <div className="col-1"></div>
                 <div className=" col-4 jumbotron btn">
                     <h2>Input categories</h2>
@@ -49,8 +49,11 @@ export class WordManagerPage extends React.Component<Props, State> {
                     <h2>Input words</h2>
                 </div>
                 <div className="col-1"></div>
+            </div>*/}
+            <div>
+                <div className="row"/>
+                <WordList words={this.state.words} reloadWords={this.reload}/>
             </div>
-            <WordList words={this.state.words} reloadWords={this.reload}/>
         </div>
     }
 }
