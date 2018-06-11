@@ -7,8 +7,8 @@ interface State {
     category: CategoryVO,
     disabledBtn: Boolean
 }
-interface Props {
 
+interface Props {
 }
 
 class CategoryPage extends React.Component<Props, State> {
@@ -40,10 +40,24 @@ class CategoryPage extends React.Component<Props, State> {
             }
         }));
 
-/*
-        if (this.state.category.name.length > 0)
-            this.setState({disabledBtn: false})
-*/
+        /*
+                if (this.state.category.name.length > 0)
+                    this.setState({disabledBtn: false})
+        */
+    };
+
+    componentDidMount() {
+        this.loadCategories();
+    }
+
+    loadCategories = () => {
+        axios.get("http://localhost:9000/categories/")
+            .then(response => {
+                this.setState({
+                    categories: response.data
+                });
+                console.log(this.state.categories);
+            })
     };
 
     saveCategory = (category: CategoryVO) => {
@@ -51,6 +65,7 @@ class CategoryPage extends React.Component<Props, State> {
         axios.post<CategoryVO>("http://localhost:9000/categories/", category)
             .then(response => {
                 // this.props.reloadWords && this.props.reloadWords();
+                this.loadCategories();
                 category.name = '';
                 this.setState({category, disabledBtn: true});
             })
@@ -58,7 +73,7 @@ class CategoryPage extends React.Component<Props, State> {
 
 
     onSave = () => {
-
+        this.saveCategory(this.state.category);
     };
 
     onDelete = () => {
@@ -85,6 +100,14 @@ class CategoryPage extends React.Component<Props, State> {
                             type="button" onClick={this.onDelete}>Usuń
                         </button>
                     </li>
+                    {
+                        this.state.categories.map((category, index) =>
+                            <li key={index}
+                                className='list-group-item d-flex justify-content-between align-items-center'>
+                                <small>{category.name}</small>
+                            </li>
+                        )
+                    }
                 </ul>
             </div>
         );
