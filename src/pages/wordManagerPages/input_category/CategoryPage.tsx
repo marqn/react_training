@@ -5,7 +5,8 @@ import axios from "axios";
 interface State {
     categories: CategoryVO[],
     category: CategoryVO,
-    disabledBtn: Boolean
+    disabledBtn: Boolean,
+    editMode: Boolean
 }
 
 interface Props {
@@ -18,14 +19,15 @@ class CategoryPage extends React.Component<Props, State> {
         this.handleChange = this.handleChange.bind(this);
     }
 
-
     state: State = {
         categories: [],
         category: {
             name: '',
-            id: Date.now()
+            id: Date.now(),
+            selected: false
         },
-        disabledBtn: false
+        disabledBtn: false,
+        editMode: false
     };
 
     handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -56,7 +58,6 @@ class CategoryPage extends React.Component<Props, State> {
                 this.setState({
                     categories: response.data
                 });
-                console.log(this.state.categories);
             })
     };
 
@@ -70,14 +71,34 @@ class CategoryPage extends React.Component<Props, State> {
                 this.setState({category, disabledBtn: true});
             })
     };
+    selectCategory = (_category: CategoryVO) => {
+        this.unselectCategoryItems();
+        _category.selected = true;
+        this.setState({category: _category, editMode: true});
+        console.log(_category.name);
+    };
 
+    unselectCategoryItems = () => {
+        this.state.categories.map(category => {
+            category.selected = false;
+        });
+    };
 
     onSave = () => {
         this.saveCategory(this.state.category);
     };
 
     onDelete = () => {
-
+        axios.delete("http://localhost:9000/categories/" + this.state.category.id)
+            .then(response => {
+                this.loadCategories();
+                let _category: CategoryVO = {
+                    name: '',
+                    id: 0,
+                    selected: false
+                };
+                this.setState({category: _category, editMode: false, disabledBtn: true});
+            });
     };
 
     render() {
@@ -103,7 +124,8 @@ class CategoryPage extends React.Component<Props, State> {
                     {
                         this.state.categories.map((category, index) =>
                             <li key={index}
-                                className='list-group-item d-flex justify-content-between align-items-center'>
+                                onClick={e => this.selectCategory(category)}
+                                className={category.selected ? 'active list-group-item d-flex justify-content-between align-items-center' : 'list-group-item d-flex justify-content-between align-items-center'}>
                                 <small>{category.name}</small>
                             </li>
                         )

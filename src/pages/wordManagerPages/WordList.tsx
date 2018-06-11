@@ -107,7 +107,6 @@ export class WordList extends React.Component<Props, State> {
         this.unselectWordItems();
         _word.selected = true;
         this.setState({word: _word, editMode: true});
-        ;
     };
 
     constructor(props: Props) {
