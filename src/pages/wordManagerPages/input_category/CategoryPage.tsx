@@ -5,8 +5,8 @@ import axios from "axios";
 interface State {
     categories: CategoryVO[],
     category: CategoryVO,
-    disabledBtn: Boolean,
-    editMode: Boolean
+    disabledBtn: boolean,
+    editMode: boolean
 }
 
 interface Props {
@@ -42,10 +42,8 @@ class CategoryPage extends React.Component<Props, State> {
             }
         }));
 
-        /*
-                if (this.state.category.name.length > 0)
-                    this.setState({disabledBtn: false})
-        */
+        if (this.state.category.name.length > 0)
+            this.setState({disabledBtn: false})
     };
 
     componentDidMount() {
@@ -88,6 +86,20 @@ class CategoryPage extends React.Component<Props, State> {
         this.saveCategory(this.state.category);
     };
 
+    onUpdate = () => {
+        this.state.category.selected = false;
+
+        axios.put("http://localhost:9000/categories/" + this.state.category.id, this.state.category)
+            .then(response => {
+                this.loadCategories();
+                let _category: CategoryVO = {
+                    name: '',
+                    id: 0,
+                    selected: false
+                };
+                this.setState({category: _category, editMode: false, disabledBtn: true});
+            })
+    }
     onDelete = () => {
         axios.delete("http://localhost:9000/categories/" + this.state.category.id)
             .then(response => {
@@ -112,10 +124,18 @@ class CategoryPage extends React.Component<Props, State> {
                                className="mb-2 input-group form-control"
                                placeholder="Insert category"
                                onChange={this.handleChange}/>
-                        <button
-                            className="mb-2 input-group-append btn btn-success"
-                            type="button" onClick={this.onSave}>Zapisz
-                        </button>
+
+                        {!this.state.editMode ?
+                            <button disabled={this.state.disabledBtn}
+                                    className="mb-2 input-group-append btn btn-success"
+                                    type="button" onClick={this.onSave}> Zapisz
+                            </button>
+                            :
+                            <button className="mb-2 input-group-append btn btn-warning"
+                                    type="button" onClick={this.onUpdate}> Aktualizuj
+                            </button>
+                        }
+
                         <button
                             className="mb-2 input-group-append btn btn-danger"
                             type="button" onClick={this.onDelete}>Usuń
