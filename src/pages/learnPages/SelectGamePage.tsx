@@ -1,4 +1,5 @@
 import * as React from "react";
+import {CategorySelectCMP} from "../../components/CategorySelectCMP";
 
 export class SelectGamePage extends React.Component {
 
@@ -12,13 +13,8 @@ export class SelectGamePage extends React.Component {
                     <button style={{margin:5}} className="btn btn-primary">Ukryj losowy</button>
                 </div>
 
-                <div className="form-group">
-                    <select className="form-control" id="exampleFormControlSelect1">
-                        <option>Trudne</option>
-                        <option>Łatwe</option>
-                        <option>Stare</option>
-                    </select>
-                </div>
+                <CategorySelectCMP />
+
                 <a className="btn btn-primary" href="/#/learn">Start</a>
             </form>
         </div>
