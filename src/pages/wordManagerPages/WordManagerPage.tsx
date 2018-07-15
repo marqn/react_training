@@ -44,7 +44,7 @@ export class WordManagerPage extends React.Component<Props, State> {
                 <ul className="list-group">
                     <li className="list-group-item list-group-item-info d-flex justify-content-between align-items-center">
                         <CategorySelectCMP/>
-                        <NavLink to="/categorypage" className="btn btn-success mb-2">Dodaj/Usuń kategorię</NavLink>
+                        <NavLink to="/categoryPage" className="btn btn-success mb-2">Dodaj/Usuń kategorię</NavLink>
                     </li>
                 </ul>
                 <WordList words={this.state.words} reloadWords={this.reload}/>

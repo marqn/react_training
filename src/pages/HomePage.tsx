@@ -5,19 +5,19 @@ interface State {
 }
 
 interface Props {
-    txt?: string
+    text: string
 }
 
 export class HomePage extends React.Component<Props, State> {
 
     static defaultProps = {
-        text: 'hey'
-    }
+        text: 'Page'
+    };
 
     render() {
 
         return <div>
-            <p>Home {this.props.txt}</p>
+            <p>Home: {this.props.text}</p>
         </div>
     }
 }

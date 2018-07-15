@@ -62,7 +62,7 @@ class App extends React.Component<{}> {
                                 <Route path="/selectGame" component={SelectGamePage}/>
                                 <Route path="/learn" component={LearnPage}/>
                                 <Route path="/wordmanager" component={WordManagerPage}/>
-                                <Route path="/categorypage" component={CategoryPage}/>
+                                <Route path="/categoryPage" component={CategoryPage}/>
                                 <Route path="/signin" component={SignIn}/>
                                 <Route path="/signup" component={SignUp}/>
                             </Switch>
