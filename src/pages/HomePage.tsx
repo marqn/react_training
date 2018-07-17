@@ -1,4 +1,5 @@
 import * as React from "react";
+import {CurrentCounter} from "./CurrentCounter";
 
 interface State {
 
@@ -18,6 +19,7 @@ export class HomePage extends React.Component<Props, State> {
 
         return <div>
             <p>Home: {this.props.text}</p>
+            <CurrentCounter />
         </div>
     }
 }
