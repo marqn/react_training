@@ -1,38 +1,28 @@
 import * as React from "react";
 
-
-interface State {
-    count: number
-}
-
 interface Props {
     count: number,
     increment: () => any,
     decrement: () => any
 }
 
-export class Counter extends React.PureComponent<Props, State> {
+export class Counter extends React.Component<Props> {
 
-    state: State = {
-        count: 0
-    };
-
-    onIncrement() {
+      onIncrement() {
         this.props.increment();
-        this.setState({count: 1});
     }
+
     onDecrement() {
-        this.props.increment();
-        this.setState({count: 2});
+        this.props.decrement();
     }
 
     render() {
         return <div>
-            <p>
-                Clicked: {this.state.count}
-                <button onClick={e => this.onIncrement()}>+</button>
-                <button onClick={e => this.onDecrement()}>-</button>
-            </p>
+
+            <p>this.props.count: {this.props.count} </p>
+            <button onClick={e => this.onIncrement()}>+</button>
+            <button onClick={e => this.onDecrement()}>-</button>
+
         </div>
     }
 }

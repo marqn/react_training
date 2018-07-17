@@ -6,7 +6,7 @@ import {Counter} from "../components/Counter";
 
 
 const mapStateToProps = (state: State) => ({
-    count:0
+    count:state.counter
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<State>) => ({
