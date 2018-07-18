@@ -4,32 +4,51 @@ export type counterState = number
 export const initialCounter = 666;
 
 interface INC {
-    type: 'INC',
-    payload: number
+    type: 'INC'
 }
 
 interface DEC {
-    type: 'DEC',
-    payload: number
+    type: 'DEC'
 }
 
-type CounterActions = INC | DEC
+interface RESET {
+    type: 'RESET'
+}
 
-export const inc: ActionCreator<INC> = (payload: number) => ({
-    type: 'INC', payload
+interface SET_0 {
+    type: 'SET_0',
+    payload:number
+}
+
+type CounterActions = INC | DEC | RESET | SET_0
+
+export const inc: ActionCreator<INC> = () => ({
+    type: 'INC'
 });
 
-export const dec: ActionCreator<DEC> = (payload: number) => ({
-    type: 'DEC', payload
+export const dec: ActionCreator<DEC> = () => ({
+    type: 'DEC'
 });
+
+export const reset: ActionCreator<RESET> = () => ({
+    type: 'RESET'
+});
+
+export const set_0: ActionCreator<SET_0> = (value:number) => ({
+    type:'SET_0', payload:value
+})
 
 export const counter: Reducer<number> = (state = initialCounter, action: CounterActions) => {
-    console.log('type:' + action.type + '  state:' + state + '  payload:' + action.payload);
+    console.log('type:' + action.type + '  state:' + state);
     switch (action.type) {
         case 'INC':
             return state + 1;
         case 'DEC':
             return state - 1;
+        case 'RESET':
+            return initialCounter;
+        case 'SET_0':
+            return action.payload;
         default:
             return state;
     }

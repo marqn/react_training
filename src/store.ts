@@ -6,11 +6,12 @@ export interface State {
     counter: counterState,
 }
 
-const reducer = combineReducers<State>({
+const reducers = combineReducers<State>({
+    // wywoływane gry rozgłaszamy akcję
     counter
 });
 
-export const store = createStore<State>(reducer);
+export const store = createStore<State>(reducers);
 
 
 window['store'] = store;

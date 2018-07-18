@@ -1,12 +1,12 @@
 import {connect} from 'react-redux';
 import { State } from '../store';
 import { Dispatch } from 'redux';
-import {inc, dec} from '../reducers/counterReducer';
+import {inc, dec, reset, set_0} from '../reducers/counterReducer';
 import {Counter} from "../components/Counter";
 
 
 const mapStateToProps = (state: State) => ({
-    count:state.counter
+    count: state.counter
 });
 
 const mapDispatchToProps = (dispatch: Dispatch<State>) => ({
@@ -15,7 +15,14 @@ const mapDispatchToProps = (dispatch: Dispatch<State>) => ({
     },
     decrement() {
         dispatch(dec())
+    },
+    reset() {
+        dispatch(reset())
+    },
+    set_0(value:number) {
+        dispatch(set_0(value))
     }
+
 });
 
 
