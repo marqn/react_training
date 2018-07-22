@@ -17,7 +17,7 @@ interface RESET {
 
 interface SET_0 {
     type: 'SET_0',
-    payload:number
+    payload: number
 }
 
 type CounterActions = INC | DEC | RESET | SET_0
@@ -34,8 +34,8 @@ export const reset: ActionCreator<RESET> = () => ({
     type: 'RESET'
 });
 
-export const set_0: ActionCreator<SET_0> = (value:number) => ({
-    type:'SET_0', payload:value
+export const set_0: ActionCreator<SET_0> = (value: number) => ({
+    type: 'SET_0', payload: value
 })
 
 export const counter: Reducer<number> = (state = initialCounter, action: CounterActions) => {

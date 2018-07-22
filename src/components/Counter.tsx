@@ -9,7 +9,7 @@ interface Props {
     increment: () => any,
     decrement: () => any,
     reset: () => any,
-    set_0:(value:number) => any
+    set_0: (value: number) => any
 }
 
 export class Counter extends React.Component<Props> {
