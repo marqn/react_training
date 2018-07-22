@@ -1,5 +1,6 @@
 import * as React from "react";
-import {CurrentCounter} from "./CurrentCounter";
+import {CurrentCounter} from "./CounterMap";
+import {CategoryMap} from "./CategoryMap";
 
 interface State {
 
@@ -20,6 +21,8 @@ export class HomePage extends React.Component<Props, State> {
         return <div>
             <p>Home: {this.props.text}</p>
             <CurrentCounter />
+
+            <CategoryMap />
         </div>
     }
 }
